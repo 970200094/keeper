@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <title>管家端</title>
+</head>
+<body>
+
+
+<div class="container">
+    <!--<header><a onclick="javascript:window.history.back()" class="back"></a>最新活动</header>-->
+    <div class="introList actives">
+
+    </div>
+</div>
+
+<script>
+
+    var push = localStorage.getItem('push')
+    alert(push.pushTime)
+
+    $(function(){
+
+        getData()
+
+    })
+
+    function getData() {
+        $.ajax({
+            url: '../../common/tools',
+            dataType: 'json',
+            processData: true,
+            ccache: true,
+            async: false,
+            data: {host: "push/details", map: map},
+            type: 'get',
+            success: function (data) {
+                var obj = data.value;
+                if (data.code = 100) {
+                    if (obj) {
+                        len = obj.length
+                        var html = '';
+                        $.each(obj, function (key, val) {
+                            var pushParams = fromJson(val.pushParams)
+                            var time = pushParams.extraParam.pushTime;
+                            var date = new Date(time);
+                            var month = date.pattern("MM/dd")
+                            var hour = date.pattern("HH:mm")
+
+                        })
+                        $('.actives').append(html)
+                    }
+                }
+            },
+            error: function () {
+                alert("Connection error");
+            }
+        })
+    }
+
+</script>
+
+
+
+
+</body>
+</html>

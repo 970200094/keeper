@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>管家端</title>
+    <style>
+        a{
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: #666;
+            background: #f5f5f5;
+            margin:5px 0;
+            text-decoration: none;
+        }
+        input{border:1px solid #ccc}
+    </style>
+</head>
+<body>
+
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/layer-mobi/layer.js"></script>
+<script src="js/common.js"></script>
+<script>
+    $(function(){
+        var map={
+            phone:'18811437473',
+            code:'0000'
+        };
+        $.ajax({
+            url:'common/tools',
+            dataType: 'json',
+            processData: true,
+            data:{host:"login/validate",map:map},
+            type: 'get',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (data) {
+                if(data.code == 100){
+                    var obj = data.value;
+                    if(obj){
+                        LY.t(data.message)
+                    }
+                }else{
+                    LY.t(data.message)
+                }
+            }
+        })
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>排班信息</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <!--<header><a onclick="javascript:window.history.back()" class="back"></a>排班信息</header>-->
+    <div class="introList flexible">
+        <div class="table hide">
+            <div class="tip clearfix"><span>已预约或其他原因无法服务</span></div>
+            <div class="tables clearfix"></div>
+        </div>
+    </div>
+</div>
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/common.js"></script>
+<script>
+
+    $(function(){
+
+        $.ajax({
+            url:'../../common/tools',
+            dataType: 'json',
+            processData: true,
+            data:{"host":"keeper/details"},
+            type: 'get',
+            success: function (data) {
+                if(data.code == 100){
+                    var obj = data.value.scheduleTime;
+                    //alert(obj)
+                    if(obj){
+                        $('.table').show();
+                        var html = '';
+                        var n = 0;
+                        html += '<div class="table_data fl">';
+                        $.each(obj, function(key,val){
+                            html += '<span>'+ val.data +'</span>';
+                        });
+                        html += '</div>';
+                        html += '<div class="table_time fl"><div class="scroll">'
+                        $.each(obj, function(key,val){
+                            n =val.timesVo.length;
+                            html +='<div>'
+                            $.each(val.timesVo, function(key2,val2){
+                                if(val2.available == 0){
+                                    html += '<span>'+ val2.time +'</span>';
+                                }else if(val2.available == 1){
+                                    html += '<span class="on">'+ val2.time +'</span>';
+                                }
+                            });
+
+                            html += '</div>';
+
+                        });
+                        html += '</div></div>';
+
+                        $('.tables').append(html)
+                        $('.tables').find('.scroll').css("width",45*n+'px')
+                    }else{
+                        $('.table').hide()
+                        $('.introList').append('<div class="noData"><i></i>暂无排班信息</div>')
+                    }
+                }else{
+                    alert(data.message);
+                }
+
+            },
+            error: function(data) {
+               alert("Connection error");
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

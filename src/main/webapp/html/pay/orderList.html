@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订单营收</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .loading{position:fixed;width:50px;height:50px;background:rgba(0,0,0,.6);border-radius:5px;padding:10px;left: 50%;top:50%;margin: -25px 0 0 -25px}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!--<header><a onclick="javascript:window.history.back()" class="back"></a>订单营收</header>-->
+    <div class="introList orderList">
+        <div class="num clearfix">
+            <div class="w50 fl"><span id="o1">--</span>订单</div>
+            <div class="w50 fl"><span id="o2">--</span>营收</div>
+        </div>
+        <div class="order_list hide">
+            <ul>
+                <!--<li>-->
+                <!--<div class="payBox">-->
+                <!--<div class="title clearfix">轻管家订单 <span class="fc_o">12单，营收1450元</span><i class="u-icon-arr u-icon-arrU"></i></div>-->
+                <!--<div class="tbox">-->
+                <!--<div class="order_intro">-->
+                <!--<p class="p1">轻享管家/周 <font class="fc_g">（6/28  周二  9：00）</font></p>-->
+                <!--<p class="p2"><i>原价：1180元</i><i>实收：1180元</i><i>提成比例：52%</i></p>-->
+                <!--<dl class="clearfix">-->
+                <!--<dd class="w33 fl"><font class="fc_o">990</font>营收（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">0</font>调整（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">0</font>实际营收（元）</dd>-->
+                <!--</dl>-->
+                <!--<p class="p3 fc_o">备注：该订单为投诉订单，已扣除营收。</p>-->
+                <!--</div>-->
+                <!--<div class="order_intro">-->
+                <!--<p class="p1">月子房清洁 <font class="fc_g">（6/28  周二  9：00）</font></p>-->
+                <!--<p class="p2"><i>原价：1180元</i><i>实收：1180元</i><i>提成比例：52%</i></p>-->
+                <!--<dl class="clearfix">-->
+                <!--<dd class="w33 fl"><font class="fc_o">89</font>营收（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">0</font>调整（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">89</font>实际营收（元）</dd>-->
+                <!--</dl>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<div class="payBox">-->
+                <!--<div class="title clearfix">增值订单 <span class="fc_o">12单，营收1450元</span><i class="u-icon-arr u-icon-arrU"></i></div>-->
+                <!--<div class="tbox">-->
+                <!--<div class="order_intro">-->
+                <!--<p class="p1">除尘除螨 <font class="fc_g">（6/28  周二  9：00）</font></p>-->
+                <!--<p class="p2"><i>原价：1180元</i><i>实收：1180元</i><i>提成比例：52%</i></p>-->
+                <!--<dl class="clearfix">-->
+                <!--<dd class="w33 fl"><font class="fc_o">990</font>营收（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">0</font>调整（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">0</font>实际营收（元）</dd>-->
+                <!--</dl>-->
+                <!--<p class="p3 fc_o">备注：该订单为投诉订单，已扣除营收。</p>-->
+                <!--</div>-->
+                <!--<div class="order_intro">-->
+                <!--<p class="p1">家电清洗 <font class="fc_g">（6/28  周二  9：00）</font></p>-->
+                <!--<p class="p2"><i>原价：1180元</i><i>实收：1180元</i><i>提成比例：52%</i></p>-->
+                <!--<dl class="clearfix">-->
+                <!--<dd class="w33 fl"><font class="fc_o">89</font>营收（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">0</font>调整（元）</dd>-->
+                <!--<dd class="w33 fl"><font class="fc_o">89</font>实际营收（元）</dd>-->
+                <!--</dl>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <!--<div class="noData"><i></i>暂无相关信息</div>-->
+    </div>
+</div>
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/common.js"></script>
+<script>
+
+    var month = localStorage.getItem("month")
+    var keepId = localStorage.getItem("keepId")
+    //alert(keepId)
+    //alert(month)
+    var map={
+        revenue_month:month,
+        keeperId:keepId
+    }
+
+    $(function(){
+        $('body').append('<div class="loading"><div class="loadEffect"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>')
+        $.ajax({
+            url:'../../common/tools',
+            dataType: 'json',
+            processData: true,
+            data:{"host":"revenue/history",map:map},
+            type: 'get',
+            success: function (data) {
+                $('.loading').remove()
+                if(data.code == 100){
+                    var obj = data.value;
+                    //alert(obj)
+                    if(obj){
+                        $('.order_list').show();
+                        var orderCount = obj.orderCount;
+                        var revenueCount = obj.revenueCount;
+                        $('#o1').text(orderCount)
+                        $('#o2').text(revenueCount)
+                        //列表数据
+                        var html = '';
+                        $.each(obj.list, function(key,val){
+                            //console.log(val)
+                            html += '<li><div class="payBox">';
+                            html += '<div class="title clearfix">'+val.groupName+'<span class="fc_o">'+val.groupCount+'单，营收'+val.groupRevenCount.toFixed(2)+'元</span><i class="u-icon-arr u-icon-arrU"></i></div>';
+                            html += '<div class="tbox">';
+                            $.each(val.revenueVos, function(key2,val2){
+                                //console.log(val2)
+                                var scale = Math.round((val2.scale)*100).toFixed(1)+'%';
+                                var time = val2.serivceTime;
+                                var date = new Date(time);
+                                var month = date.pattern("MM/dd")
+                                var hour = date.pattern("hh:mm")
+                                var week = date.pattern("EE")
+                                //console.log(date.pattern("EE"))
+                                html += '<div class="order_intro">';
+                                html += '<p class="p1">'+val2.serivceName+'<font class="fc_g">（'+month +'&nbsp'+ week +'&nbsp'+ hour+'）</font></p>';
+                                html += '<p class="p2"><i>原价：'+val2.pirce+'元</i><i>实收：'+val2.realPrice+'元</i><i>提成比例：'+scale+'</i></p>';
+                                html += '<dl class="clearfix">';
+                                html += '<dd class="w33 fl"><font class="fc_o">'+val2.revenPrice+'</font>营收（元）</dd>';
+                                html += '<dd class="w33 fl"><font class="fc_o">'+val2.debitPrice+'</font>调整（元）</dd>';
+                                html +='<dd class="w33 fl"><font class="fc_o">'+val2.realRevenPrice+'</font>实际营收（元）</dd>';
+                                html +='</dl>';
+                                if(val2.debitPrice < 0){
+                                    html +='<p class="p3 fc_o">备注：该订单为投诉订单，已扣除营收。</p>';
+                                }
+                                if(val2.peopleNumber > 1){
+                                    html +='<p class="p3 fc_o">备注：多人订单,营收均分。</p>';
+                                }
+                                if(val2.debitPrice < 0 && val2.peopleNumber > 1){
+                                    html +='<p class="p3 fc_o">备注：该订单为投诉订单，已扣除营收。</p>';
+                                    html +='<p class="p3 fc_o">备注：多人订单,营收均分。</p>';
+                                }
+
+                                html +='</div>';
+                            })
+                            html += '</div></div></li>';
+                        })
+                        $('.order_list ul').append(html)
+                    }else{
+                        $('.introList').append('<div class="noData"><i></i>暂无相关信息</div>')
+                    }
+                }else{
+                    $('.introList').append('<div class="noData"><i></i>暂无相关信息</div>')
+                }
+
+            },
+            error: function(data) {
+                alert("Connection error");
+            }
+        })
+
+        $('.order_list').on('click','.title',function(){
+            if($(this).next(".tbox").css('display')=='block') {
+                $(this).next(".tbox").stop().slideToggle(300).siblings(".tbox").slideUp("slow");
+                $(this).find('.u-icon-arr').removeClass('u-icon-arrU')
+                $(this).find('.u-icon-arr').addClass('u-icon-arrD')
+            }else{
+                $(this).next(".tbox").stop().slideToggle(300).siblings(".tbox").slideUp("slow");
+                $(this).find('.u-icon-arr').addClass('u-icon-arrU')
+                $(this).find('.u-icon-arr').removeClass('u-icon-arrD')
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

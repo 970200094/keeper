@@ -1,0 +1,823 @@
+html,body{
+    font-family: PingFangSC-Regular;
+}
+::-webkit-scrollbar{display:none}
+hr{
+    height: 10px;
+    background: #F5F5F5;
+}
+.hide{
+    display: none;
+}
+.u-icon-arr {
+    position: absolute;
+    top: 45%;
+    right: 0.15rem;
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    border-color: #BABABA;;
+    -webkit-transform-origin: 75% 25%;
+    -webkit-transform: rotateZ(45deg);
+    -webkit-transition: 100ms ease-in .1s;
+    transition: 100ms ease-in .1s;
+}
+/*箭头朝底 down*/
+.u-icon-arrD
+{
+    -webkit-transform: rotateZ(135deg);
+}
+/*箭头朝上 up*/
+.u-icon-arrU
+{
+    -webkit-transform: rotateZ(-45deg);
+}
+/*箭头朝左 up*/
+.u-icon-arrL
+{
+    -webkit-transform: rotateZ(225deg);
+}
+.fc_g{
+    color: #999;
+}
+.fc_w{
+    color: #fff!important;
+}
+.fc_o{
+    color: #FF6D00!important;
+}
+.noData{
+    position: fixed;
+    top:40%;
+    left: 50%;
+    text-align: center;
+    width: 90%;
+    height: 1rem;
+    margin: -0.5rem 0 0 -45%;
+    font-size: 0.12rem;
+    color: #868686;
+    letter-spacing: -0.29px;
+    line-height: 20px;
+    font-family: PingFangSC-Regular;
+}
+.noData i{
+    display: block;
+    background: url("../images/icon/noData.png") no-repeat;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-size:cover;
+    margin: 0.1rem auto;
+}
+
+/*测试用的头部*/
+header{height: 52px;line-height: 52px;background: #fff;border-bottom: 1px solid #eee;text-align: center;position: fixed;width: 100%;top: 0;z-index: 999;font-family: SourceHanSans-Normal;  font-size: 0.18rem;  color: #333333;  letter-spacing: -1.12px;}
+header .back{display: inline-block;width:0.2rem;height: 0.2rem;background: url("../images/icon/btn_nav_back.png") no-repeat;background-size: cover;position: absolute;top: 15px;left: 10px}
+/*测试用的头部 end*/
+
+
+
+
+.introList{
+    padding: 0 10px;
+}
+.introList ul li {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    position: relative;z-index: 9;
+}
+.introList ul li a{
+    display: block;
+    background: none;
+}
+.introList ul li .time{
+    font-size:0.12rem;
+    line-height: 1.5;
+    color: #FFFFFF;
+    letter-spacing: -0.24px;
+    width: 0.8rem;
+    text-align: center;
+    margin: 0 auto 0.16rem;
+    background: #DADADA;
+    border-radius: 100px;
+}
+.introList ul li .box{
+    background: #FFFFFF;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.introList ul li .p_title{
+    font-size: 0.13rem;
+    padding: 10px;
+    color: #555555;
+    letter-spacing: 0;
+    line-height: 20px;
+    border-bottom: 1px solid #eee;
+    font-family: PingFangSC-Regular;
+}
+.introList ul li .p_img{
+     padding: 10px;
+ }
+.introList ul li .p_desc{
+    padding: 10px;
+    font-family: PingFangSC-Light;
+    color: #666666;
+    letter-spacing: 0;
+    line-height: 22px;
+    font-size:0.12rem;
+}
+.introList ul li .p-btn span{
+    padding:0 10px;
+    font-size: 0.12rem;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    background: #F7F7F7;
+    font-family: PingFangSC-Regular;
+    color: #666666;
+    letter-spacing: 0;
+    position: relative;
+}
+
+.introList ul li .p-btn span:after, .introList ul li .p-btn span:before {
+    border: 7px solid transparent;
+    border-left: 7px solid #fff;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 14px;
+    right: 5px;
+    content: ' '
+}
+.introList ul li .p-btn span:before{
+    border-left-color: #999;
+    right: 3px;
+}
+.introList ul li .p_tag{
+    margin: 0 0.1rem;
+    margin-bottom: 0.1rem;
+    margin-left: 0;
+}
+.introList ul li .p_tag a{
+    margin-left: 0.1rem;
+    margin-bottom: 0.05rem;
+    background: #F9F9F9;
+    border-radius: 100px;
+    font-size: 0.11rem;
+    color: #999999;
+    display: inline-block;
+    letter-spacing: -0.53px;
+    padding: 3px 10px;
+    font-family: PingFangSC-Regular;
+}
+
+.actives ul li .p_title{
+    padding-top: 0;
+}
+
+
+.complain{
+
+}
+.complain .tip{
+    height: 40px;
+    line-height: 40px;
+    margin-left: 0.1rem
+}
+.complain ul li{
+    background: #FFFFFF;
+    margin-bottom: 0.1rem;
+}
+.complain .p_title{
+    font-family: PingFangSC-Regular;
+    font-size: 0.15rem;
+    color: #555555;
+    letter-spacing: -0.38px;
+    line-height: 40px;
+    position: relative;
+    padding: 0 0.1rem;
+    padding-left: 0.25rem;
+    border-bottom: 1px solid #ececec;
+}
+.complain .p_title span{
+    font-family: PingFangSC-Regular;
+    font-size: 0.15rem;
+    color: #AAAAAA;
+    letter-spacing: -0.38px;
+    line-height: 40px;
+}
+.complain .p_title:before{
+    background: #FF6D00;
+    border-radius: 100px;
+    width: 3px;
+    height: 14px;
+    display:block;
+    content: '';
+    position: absolute;
+    left: 0.15rem;
+    top:13px;
+}
+.complain dl{
+    padding: 0.15rem;
+    font-family: PingFangSC-Regular;
+    border-bottom: 1px solid #ececec;
+}
+.complain dl dt,.complain dl dd{
+    font-size: 0.12rem;
+    color: #666666;
+    letter-spacing: -0.27px;
+    line-height: 1.6;
+}
+.complain dl dt span,.complain dl dd span{
+    font-size: 0.12rem;
+    color: #aaa;
+    line-height: 1.6;
+}
+.complain dl dd{
+    float: left;
+    line-height: 1.8;
+}
+.complain dl font{
+    color: #aaa;
+}
+.complain .info{
+    padding: 0 0.15rem;
+    padding-top: 0.15rem ;
+    font-size: 0.12rem;
+    color: #666;
+    font-family: PingFangSC-Regular;
+}
+.complain .info .p_text{
+    padding-bottom: 0.15rem;
+    color: #666;
+}
+
+.assess{
+    padding: 0;
+}
+.assess .tab_head{
+    height: 40px;
+    line-height: 40px;
+    background: #FFFFFF;
+    font-family: PingFangSC-Regular;
+    font-size: 0.14rem;
+    color: #BABABA;
+    letter-spacing: -0.35px;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 999;
+}
+.assess .tab_head li{
+    width: 50%;
+    float: left;
+    margin: 0;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    border-bottom: 1px solid #d4d4d4;
+}
+.assess .tab_head .active{
+    color: #FF6D00;
+    border-bottom: 1px solid #FF6D00;
+}
+.assess .tab_content .tab_box{
+    display: none;
+    padding: 0 0.1rem;
+}
+.assess .tab_content .action{
+    display: block;
+}
+.assess ul li{
+    margin-bottom: 0.1rem;
+}
+.assess ul li .p_title{
+    font-size: 0.15rem;
+    padding: 10px;
+    border-bottom:1px dashed #eee;
+}
+.assess ul li .p_title i{
+    float: right;
+    font-size: 0.11rem;
+    color: #999999;
+    letter-spacing: -0.28px;
+}
+.assess ul li .p_title b{
+    display: inline-block;
+    width: 0.18rem;
+    height: 0.18rem;
+    border-radius: 50%;
+    margin-right: 0.06rem;
+    position: relative;
+    top:-1px;
+}
+.assess ul li .p_tag{
+    margin-left: 0.05rem;
+}
+.assess ul li .p_tag a{
+    margin-left: 0.05rem;
+}
+.assess ul li .p_title .good{
+    background: url("../images/icon/good.png") no-repeat #FF6D00 center;
+    background-size:70%;
+}
+.assess ul li .p_title .differ{
+    background: url("../images/icon/good.png") no-repeat #ccc center;
+    background-size:70%;
+    -webkit-transform: rotateZ(-180deg);
+}
+.assess ul li .p_thumb{
+    margin: 0 0.05rem;
+}
+.assess ul li .p_thumb a{
+    width: 100%;
+    display: block;
+    float:left;
+    overflow: hidden;
+}
+.assess ul li .p_thumb img{
+    width: 100%;
+    display: block;
+}
+.assess .tab_content{
+    padding-top: 41px;
+}
+
+.pay{
+    background: #fff;
+    padding: 0;
+}
+.payBox .title{
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    padding-left: 0.25rem;
+    font-size: 0.13rem;
+    color:#333;
+    border-bottom: 0.5px solid #ececec;
+}
+.payBox .title:before{
+    background: #FF6D00;
+    border-radius: 100px;
+    width: 3px;
+    height: 15px;
+    display:block;
+    content: '';
+    position: absolute;
+    left: 0.15rem;
+    top:12px;
+}
+.payBox .title span{
+    display: block;
+    line-height: 40px;
+}
+.payBox .center{
+    padding: 0.18rem 0;
+}
+.payBox .center div{
+    text-align: center;
+    font-size: 0.12rem;
+    color: #999999;
+    letter-spacing: -0.29px;
+    border-right:1px solid #ccc;
+}
+.payBox .center div:last-child{
+    border: 0;
+}
+.payBox .center div span{
+    display: block;
+    font-family: Roboto-Regular;
+    font-size: 0.2rem;
+    color: #333333;
+    letter-spacing: -0.48px;
+}
+.tbox{
+    padding:0.1rem 0;
+}
+.tbox dd{
+    padding: 0.1rem 0;
+    font-family: PingFangSC-Regular;
+    font-size: 0.11rem;
+    color: #333;
+    letter-spacing: -0.27px;
+    line-height: 20px;
+    border-bottom: 0.5px solid #e4e4e4;
+}
+.tbox dd:last-child{
+    border-bottom: 0;
+}
+.tbox span{
+    display: block;
+    font-size: 0.13rem;
+    color: #333333;
+    letter-spacing: -0.32px;
+    line-height: 18px;
+    font-family: PingFangSC-Regular;
+    position: relative;
+}
+.tbox strong{
+    display: block;
+    font-size: 0.11rem;
+    color: #999999;
+    letter-spacing: -0.27px;
+    line-height: 18px;
+}
+.tbox dd span i{
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: #FFD400;
+    border-radius: 50%;
+    position: absolute;
+    left: -15px;
+    top:6px;
+}
+.tbox dd span font{
+    position: relative;
+    top:-1px;
+    margin:0 0.05rem;
+}
+.tbox dd:nth-child(1) span i{
+    background: #FFD400;
+}
+.tbox dd:nth-child(2) span i{
+    background: #FF9B27;
+}
+.tbox dd:nth-child(3) span i{
+    background: #FF6D00;
+}
+.tbox span b:after,.tbox span b:before{
+    display: block;
+    border: 7px solid transparent;
+    border-left: 7px solid #fff;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 3px;
+    right: 30px;
+    content: ' '
+}
+.tbox span b:before{
+    border-left-color: #ccc;
+    right: 28px;
+}
+#can{
+    position: relative;
+    padding-top: 0.05rem;
+    margin: 0.1rem 0;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-left: 0.14rem;
+}
+.tbox2 dl{
+    margin: 0.2rem 0;
+    position: relative;
+    z-index: 999;
+}
+.tbox2 dl dd{
+    padding:0.1rem 0;
+    font-family: PingFangSC-Light;
+}
+.tbox p.desc{
+    background: #FAFAFA;
+    border-radius: 5px;
+    margin:0 0.2rem 0.1rem 0.2rem;
+    font-family: PingFangSC-Light;
+    font-size: 12px;
+    color: #666666;
+    letter-spacing: -0.58px;
+    line-height: 19px;
+    padding: 0.1rem 0.07rem;
+}
+.tbox3 p.desc{
+    background: none;
+}
+.tbox4{
+    margin: 0 0.2rem;
+}
+.tbox4 dl{
+    padding: 0 0.2rem;
+    text-align: center;
+}
+.tbox4 dl dt{
+    height: 26px;
+    line-height: 26px;
+    background: #FCFCFC;
+    font-size: 0.11rem;
+    color: #666666;
+    margin-bottom: 0.05rem;
+    padding: 0;
+    border: 0;
+}
+.tbox4 dl dd span{
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    background: #FCFCFC;
+    font-size: 0.11rem;
+    color: #666666;
+    margin-bottom: 0.05rem;
+    padding: 0;
+    border: 0;
+}
+.tbox4 dl dt{
+    font-family: PingFangSC-Regular;
+    font-size: 13px;
+    color: #FFFFFF;
+    letter-spacing: -0.63px;
+}
+.tbox4 dl:nth-child(1) dt{
+    background: #FFD400;
+}
+.tbox4 dl:nth-child(2) dt{
+    background: #FF6D00;
+}
+
+
+.orderList{
+    padding: 0;
+    /*padding-top: 53px;*/
+}
+.orderList .num{
+    background:-moz-linear-gradient(top, #FE9365, #FFB14D);
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#FE9365), to(#FFB14D));
+    background:-o-linear-gradient(top, #FE9365, #FFB14D);
+    height: 0.8rem;
+}
+.orderList .num div{
+    text-align: center;
+    border-right:1px solid #eee;
+    margin: 0.18rem 0;
+    font-size: 0.12rem;
+    color: #999999;
+    letter-spacing: -0.29px;
+    color: #fff;
+}
+.orderList .num div:last-child{
+    border: 0;
+}
+.orderList .num span{
+    display: block;
+    font-family: Roboto-Regular;
+    font-size: 0.2rem;
+    color: #333333;
+    letter-spacing: -0.48px;
+    color: #fff;
+}
+.orderList .payBox .title{
+    font-size: 0.15rem;
+    font-family: PingFangSC-Regular;
+}
+.orderList .payBox .title span{
+    font-family: PingFangSC-Regular;
+    font-size: 0.12rem;
+    color: #FF6D00;
+    letter-spacing: -0.3px;
+    line-height: 12px;
+    float: right;
+    margin: 0.15rem 0.35rem 0 0;
+}
+.order_list ul li{
+    background: #fff;
+    margin: 0.1rem 0;
+}
+.order_intro{
+    margin: 0 0.15rem;
+    border-bottom: 1px solid #ececec;
+    padding: 0.1rem 0;
+}
+.orderList .tbox{
+    padding: 0;
+}
+.order_list ul li .order_intro:last-child{
+    border: 0;
+}
+.order_intro:first-child{
+    margin-top: 0.05rem;
+}
+.order_intro .p1{
+    font-family: PingFangSC-Regular;
+    font-size: 0.12rem;
+    color: #555555;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+.order_intro .p1 span{
+    font-family: PingFangSC-Regular;
+    font-size: 0.12rem;
+    color: #AAAAAA;
+    letter-spacing: -0.3px;
+}
+.order_intro .p2{
+    font-family: PingFangSC-Regular;
+    font-size: 0.11rem;
+    color: #AAAAAA;
+    letter-spacing: -0.27px;
+}
+.order_intro .p2 i{
+    display: inline-block;
+    margin-right: 0.2rem;
+    color: #AAAAAA;
+}
+.order_intro .p3{
+    font-family: PingFangSC-Regular;
+    font-size: 0.1rem;
+    color: #FF6D00;
+    letter-spacing: -0.25px;
+    line-height: 1.8;
+}
+.order_intro dl{
+    background: #FAFAFA;
+    text-align: center;
+    padding: 0.1rem 0;
+    font-family: PingFangSC-Regular;
+    font-size: 0.11rem;
+    color: #AAAAAA;
+    letter-spacing: -0.27px;
+    margin: 0.1rem 0;
+}
+.order_intro dl dd{
+    border: 0;
+}
+.order_intro dl dd font{
+    display: block;
+    font-family: Roboto-Regular;
+    font-size: 0.14rem;
+    color: #FF6D00;
+    letter-spacing: -0.35px;
+    line-height: 16px;
+}
+
+.flexible{
+    padding: 0;
+}
+.flexible .table .tip{
+    padding: 0 0.1rem;
+    background: #F9F9F9;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    text-align: right;
+}
+.flexible .table .tip span{
+    display: block;
+    width: auto;
+    height: 100%;
+    float: right;
+    position: relative;
+    font-family: PingFangSC-Light;
+    font-size: 0.11rem;
+    color: #333333;
+    letter-spacing: -0.27px;
+    line-height: 30px;
+}
+.flexible .table .tip span:before{
+    background: #FF6D00;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    display:block;
+    content: '';
+    position: absolute;
+    left: -0.15rem;
+    top:11px;
+}
+
+.flexible .tables{
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+}
+.flexible .tables .table_data{
+    width: 45px;
+}
+.flexible .tables .table_data span{
+    background: #F9F9F9;
+    font-family: PingFangSC-Medium;
+    font-size: 0.12rem;
+    height: 44px;
+    line-height:44px;
+    color: #333333;
+    letter-spacing: -0.58px;
+    border-bottom: 1px solid #e4e4e4;
+}
+.flexible .tables .table_time{
+    width: calc(100% - 45px);
+    overflow: auto;
+
+}
+.flexible .tables .table_data span:last-child {
+    border: 0;
+}
+.flexible .tables .table_time .scroll{
+    background: #fff;
+    overflow-x: auto;
+}
+.flexible .tables span{
+    display: inline-block;
+    width: 45px;
+    height: 44px;
+    line-height:44px;
+    text-align: center;
+    ont-family: PingFangSC-Light;
+    font-size:0.12rem;
+    color: #333333;
+    letter-spacing: -0.58px;
+    position: relative;
+    border-bottom: 1px solid #e4e4e4;
+}
+.flexible .table_time .scroll div:last-child span{
+    border:0
+}
+.flexible .tables span.on{
+    color: #FF6D00;
+}
+.flexible .tables span.on:after{
+    background: #FF6D00;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    display:block;
+    content: '';
+    position: absolute;
+    left: 50%;
+    margin-left: -2.5px;
+    bottom:7px;
+}
+
+/*.loading{position:absolute;width:0.5rem;height:0.5rem;background:rgba(0,0,0,.6);border-radius:5px;padding: 0.1rem;left: 50%;top:50%;margin: -0.25rem 0 0 -0.25rem}*/
+.loadEffect{
+    width: 0.3rem;
+    height: 0.3rem;
+    margin: 0 auto;
+    position: absolute;
+}
+.loadEffect span{
+    display: inline-block;
+    width: 10px;
+    height:2px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: #fff;
+    position: absolute;
+    -webkit-animation: load 1.04s ease infinite;
+}
+@-webkit-keyframes load{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0.2;
+    }
+}
+.loadEffect span:nth-child(1){
+    left: -2px;
+    top: 50%;
+    margin-top:-2px;
+    -webkit-animation-delay:0.13s;
+}
+.loadEffect span:nth-child(2){
+    left: 0;
+    top: 4px;
+    -webkit-transform: rotate(45deg);
+    -webkit-animation-delay:0.26s;
+}
+.loadEffect span:nth-child(3){
+    left: 50%;
+    top: 2px;
+    margin-left:-4px;
+    -webkit-transform: rotate(90deg);
+    -webkit-animation-delay:0.39s;
+}
+.loadEffect span:nth-child(4){
+    top: 4px;
+    right:0;
+    -webkit-transform: rotate(135deg);
+    -webkit-animation-delay:0.52s;
+}
+.loadEffect span:nth-child(5){
+    right: -2px;
+    top: 50%;
+    margin-top:-2px;
+    -webkit-transform: rotate(180deg);
+    -webkit-animation-delay:0.65s;
+}
+.loadEffect span:nth-child(6){
+    right:0;
+    bottom:6px;
+    -webkit-transform: rotate(225deg);
+    -webkit-animation-delay:0.78s;
+}
+.loadEffect span:nth-child(7){
+    bottom: 2px;
+    left: 50%;
+    margin-left: -4px;
+    -webkit-transform: rotate(270deg);
+    -webkit-animation-delay:0.91s;
+}
+.loadEffect span:nth-child(8){
+    bottom: 6px;
+    left: 0;
+    -webkit-transform: rotate(315deg);
+    -webkit-animation-delay:1.04s;
+}

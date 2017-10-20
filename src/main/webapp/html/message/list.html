@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>消息通知</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/base.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/listloading.css">
+    <style>
+        .scroller{
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            bottom:0;
+            height:100%;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!--<header><a onclick="javascript:window.history.back()" class="back"></a>消息</header>-->
+        <div id="wrapper">
+            <div class="introList scroller" id="listloading">
+                <div>
+                    <ul id="order-list" class="order-list"></ul>
+                    <div class="noData hide"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/iscroll/jslib/require.js"></script>
+    <script src="../../js/iscroll/jslib/iconfont.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+        var len,infoId
+        var map = {page:1}
+        require(['iscroll', 'listloading'], function() {
+            var Listloading = require('listloading');
+            // demo
+            var listloading = new Listloading('#listloading', {
+                disableTime: true, // 是否需要显示时间
+                pullUpAction: function(cb) { // 上拉加载更多
+                    var flg = false;
+                    if(len<20){
+                        flg = true;
+                    }else{
+                        map.page++
+                        getData()
+                    }
+                    cb(flg);
+                },
+                pullDownAction: function(cb, flg) { // 下拉刷新
+                    map = {page:1}
+                    getData()
+                    cb();
+                },
+                Realtimetxt: '释放刷新数据！',
+                loaderendtxt: '没有数据了',
+                // iscroll的API
+                iscrollOptions: {
+                    scrollbars: false // 显示iscroll滚动条
+                }
+            });
+
+        });
+        require.config({
+            paths: {
+                "iscroll": "../../js/iscroll/jslib/iscroll",
+                "listloading": "../../js/iscroll/jslib/listloading"
+            }
+        });
+
+        function getData(){
+            $.ajax({
+                url: '../../common/tools',
+                dataType: 'json',
+                processData: true,
+                ccache: true,
+                async: false,
+                data: {host: "keeper/notice", map: map},
+                type: 'get',
+                success: function (data) {
+                    //alert('s')
+                    var obj = data.value;
+                    if(data.code = 100){
+                        if(obj){
+                            len = obj.length
+                            var html = '';
+                            $.each(obj,function(key,val){
+                                var pushParams = fromJson(val.pushParams)
+                                var time = pushParams.extraParam.time;
+                                var date = new Date(time);
+                                var month = date.pattern("MM/dd")
+                                var hour = date.pattern("hh:mm")
+                                if(pushParams.type == 20){
+                                    html+='<li>'
+                                            +'<div class="time">'+month+'&nbsp;&nbsp;'+hour+'</div>'
+                                            +'<div class="box box1"><a onclick="getOrderUrl(\''+ val.id +'\',\''+pushParams.extraParam.orderId+'\''+','+'\''+pushParams.extraParam.title+'\')">'
+                                            +'<div class="p_title">'+pushParams.extraParam.title+'</div>'
+                                            +'<div class="p_desc"><font class="fc_g">'+pushParams.content+'</font><br>'+pushParams.extraParam.content+'</div>'
+                                            +'<div class="p-btn"><span>查看详情</span></div>'
+                                            +'</a></div>'
+                                            +'</li>'
+                                }else if(pushParams.type == 10){
+                                    html+='<li>'
+                                            +'<div class="time">'+month+'&nbsp;&nbsp;'+hour+'</div>'
+                                            +'<div class="box box1"><a onclick="getActiveUrl(\''+ val.id +'\',\''+pushParams.extraParam.url+'\''+','+'\''+pushParams.extraParam.title+'\')">'
+                                            +'<div class="p_title">'+pushParams.extraParam.title+'</div>'
+                                            +'<div class="p_img"><img src="'+pushParams.extraParam.picUrl+'" alt=""></div>'
+                                            +'<div class="p-btn"><span>查看详情</span></div>'
+                                            +'</a></div>'
+                                            +'</li>'
+                                }else if(pushParams.type == 70){
+                                    html+='<li>'
+                                            +'<div class="time">'+month+'&nbsp;&nbsp;'+hour+'</div>'
+                                            +'<div class="box box1"><a onclick="getAssessUrl(\''+ val.id +'\')">'
+                                            +'<div class="p_title">'+pushParams.extraParam.title+'</div>'
+                                            +'<div class="p_desc"><font class="fc_g">'+pushParams.content+'</font><br>'+pushParams.extraParam.content+'</div>'
+                                            +'<div class="p-btn"><span>查看详情</span></div>'
+                                            +'</a></div>'
+                                            +'</li>'
+                                }
+
+
+                            })
+                            $('#order-list').empty()
+                            $('#order-list').append(html)
+                            $('.noData').hide()
+                            $('.noData').html('')
+                        }else{
+                            $('.noData').show()
+                            $('.noData').html('<i></i>暂无相关通知信息~')
+                        }
+                    }else{
+                        $('.noData').show()
+                        $('.noData').html('<i></i>暂无相关通知信息~')
+                    }
+
+                },
+                error: function() {
+                    alert("Connection error");
+                }
+            })
+        }
+
+        function getRead(){
+            $.ajax({
+                url: '../../common/tools',
+                dataType: 'json',
+                processData: true,
+                ccache: true,
+                async: false,
+                data: {host: "push/details", map: infoId},
+                type: 'get',
+                success: function (data) {
+
+                },
+                error: function() {
+                    alert("Connection error");
+                }
+            })
+        }
+
+        function getActiveUrl(id,url,title){
+            //alert(id)
+            infoId = {id:id}
+            getRead()
+            var url = 'http://'+url;
+            xmgjExtend.nextViewControllerUrl(url,title);
+        }
+
+        function getOrderUrl(id,orderId,title){
+            //alert(id)
+            infoId = {id:id}
+            getRead()
+            xmgjExtend.nextViewControllerUrl(orderId,title);
+        }
+
+        function getAssessUrl(id){
+            //alert(id)
+            infoId = {id:id}
+            getRead()
+            xmgjExtend.nextViewControllerUrl();
+        }
+
+    </script>
+</body>
+</html>

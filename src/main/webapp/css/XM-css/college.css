@@ -1,0 +1,118 @@
+/*//////////////小马学院//////////////////*/
+
+
+
+.xm-div .xm-i {
+    width: .03rem;
+    height:.14rem;
+    display: inline-block;
+    background-color: #ff6d00;
+    margin-left: .15rem;
+    margin-right: .05rem;
+}
+
+
+.xm-div-top {
+    height: .4rem;
+    width: 100%;
+    border-bottom: .5px solid #d8d8d8;
+    line-height: .4rem;
+    font-size: .15rem;
+    color: #555555;
+    letter-spacing: -0.38px;
+}
+
+.xm-ul-wp {
+    width: 100%;
+   /*overflow-x: scroll;*/
+}
+
+
+.xm-div-ul {
+    /*width: 360px;*/
+    height: 1.9rem;
+    float: left;
+    margin-left: 0.1rem;
+}
+
+.xm-div-ul li{
+    float: left;
+    padding: .15rem .2rem 0.1rem;
+    font-size: .11rem;
+    color: #555555;
+    letter-spacing: -0.36px;
+
+}
+
+.xm-div-ul img {
+    width: .45rem;
+    height: .45rem;
+}
+
+
+.xm-div>img {
+    width: 100%;
+    height: .8rem;
+}
+
+
+.xm-div-ul dl{
+    text-align: center;
+}
+
+.xm-div-ul dt{
+    margin-bottom: 0.07rem;
+}
+
+span.xm-more {
+    font-size: .13rem;
+    color: #AAAAAA;
+    letter-spacing: -0.33px;
+    line-height: .4rem;
+    margin-right: .15rem;
+    float: right;
+    display: none;
+}
+
+
+.xm-qa {
+    width: 95%;
+    height: .6rem;
+    margin-left:5%;
+    border-bottom: .5px solid #d8d8d8;
+
+}
+
+.xm-qa dt{
+    font-size: .13rem;
+    color: #555555;
+    letter-spacing: -0.32px;
+    line-height: 0.25rem;
+    margin-top: .11rem;
+
+}
+
+.xm-qa dd {
+    font-size: .11rem;
+    color: #555555;
+    line-height: .15rem;
+    letter-spacing: -0.27px;
+}
+
+.w91 p{
+    font-size: .16rem;
+    font-weight: 700;
+
+}
+
+.detail-span{
+    font-size: .11rem;
+    color: #555555;
+    letter-spacing: -0.27px;
+}
+
+.detail-cont{
+    margin-top: .2rem;
+}
+
+

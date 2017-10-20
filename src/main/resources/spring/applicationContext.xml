@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:context="http://www.springframework.org/schema/context"
+	 xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
+	 xmlns:mvc="http://www.springframework.org/schema/mvc"
+	 xmlns:task="http://www.springframework.org/schema/task"
+	 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	  http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context.xsd
+	  http://www.springframework.org/schema/task 
+	  http://www.springframework.org/schema/task/spring-task.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.xiaomaguanjia.keeper" />
+    <aop:aspectj-autoproxy />
+    
+   
+
+	<mvc:annotation-driven />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.xiaomaguanjia.keeper.web.interceptor.AccessInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!-- <util:properties id="configProperties" location="classpath:config.properties" 
+		/> <bean class="com.xiaomaguanjia.open.spring.SpringContextHolder" lazy-init="false" 
+		/> -->
+	<import resource="classpath*:simplesm-context.xml" />
+	
+	
+	  <task:annotation-driven />  
+
+	<bean name="defaultMemcachedClient" class="com.google.code.ssm.CacheFactory">
+		<property name="cacheClientFactory">
+			<bean class="com.google.code.ssm.providers.xmemcached.MemcacheClientFactoryImpl" />
+		</property>
+		<property name="addressProvider">
+			<bean class="com.google.code.ssm.config.DefaultAddressProvider">
+				<!-- memcached 服务器地址，可配置多个，用“，”号隔开 -->
+				<property name="address" value="${memcached.ip}" />
+			</bean>
+		</property>
+		<property name="configuration">
+			<bean class="com.google.code.ssm.providers.CacheConfiguration">
+				<!-- 是否使用哈希 -->
+				<property name="consistentHashing" value="true" />
+			</bean>
+		</property>
+		<!-- 该Memcached配置的Cache名称 一个应用中存在多个Memcached时，各个配置的cacheName必须不同。如果该值未设，系统默认为default 
+			<property name="cacheName" value="mailbill"/> -->
+	</bean>
+	<bean class="com.google.code.ssm.Settings">
+		<property name="order" value="500" />
+	</bean>
+	<!--启动spring的aop自动代理 -->
+	<aop:aspectj-autoproxy />
+
+	<mvc:annotation-driven />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.xiaomaguanjia.keeper.web.interceptor.AccessInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!--redis -->
+	
+	<!--  
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.maxActive}" />
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<property name="maxWaitMillis" value="${redis.maxWait}" />
+	</bean>
+	<bean id="jedisShardInfo" class="redis.clients.jedis.JedisShardInfo">
+		<constructor-arg name="host" value="${redis.host}" />
+		<constructor-arg name="port" value="${redis.port}" />
+		<constructor-arg name="timeout" value="${redis.timeout}" />
+		<property name="password" value="${redis.password}" />
+	</bean>
+	<bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+		<constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+		<constructor-arg name="shards">
+			<list>
+				<ref bean="jedisShardInfo" />
+			</list>
+		</constructor-arg>
+	</bean>
+	-->
+</beans>

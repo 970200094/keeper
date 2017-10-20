@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>投诉记录</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/base.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/listloading.css">
+    <style>
+        #listloading{
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height:100%;
+            overflow:hidden;
+        }
+        li .p_title span{position: relative;top: -1px}
+        li .p_title
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!--<header><a onclick="javascript:window.history.back()" class="back"></a>投诉记录</header>-->
+    <div id="listloading">
+        <div>
+            <div class="complain hide">
+
+                <div class="tip"></div>
+                <ul></ul>
+
+            </div>
+            <div class="noData"></div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/iscroll/jslib/require.js"></script>
+<script src="../../js/iscroll/jslib/iconfont.js"></script>
+<script src="../../js/common.js"></script>
+<script>
+    var map,timer
+    var load = false;
+
+    function getTime(time){
+        //alert(time)
+        map={time:time}
+        getData()
+        timer = map.time
+    }
+
+    function getData(){
+        $.ajax({
+            url:'../../common/tools',
+            dataType: 'json',
+            processData: true,
+            data:{host:"complaint/record",map:map},
+            type: 'get',
+            success: function (data) {
+
+                var obj = data.value;
+                if(obj){
+                    load = true;
+                    $('.complain').show();
+                    var html = '';
+                    var len = obj.length;
+                    $('.tip').text('本月有'+len+'个投诉记录')
+                    $.each(obj, function (key, val) {
+                        console.log(val)
+                        var time = val.orderSerivceTime;
+                        var date = new Date(time);
+                        var month = date.pattern("MM/dd")
+                        var hour = date.pattern("hh:mm")
+                        var week = date.pattern("EE")
+                        var time2 = val.cre_time;
+                        var date2 = new Date(time2);
+                        var month2 = date2.pattern("yyyy/MM/dd HH:mm:ss")
+                        if(val.complaint_status = 11){
+                            var complaint_status_name = '投诉受理'
+                        }else{
+                            var complaint_status_name = '投诉取消'
+                        }
+
+                        html +='<li>'
+                                +'<div class="box">'
+                                +'<p class="p_title">'+val.orderName+' <span>（'+month+'&nbsp;'+week+'&nbsp;'+hour+'）</span></p>'
+                                +'<dl class="clearfix">'
+                                +'<dt>投诉时间：<font>'+month2+'</font></dt>'
+                                +'<dd class="w50">投诉来源： <font>'+val.complaint_source_name+'</font></dd>'
+                                +'<dd class="w50">投诉级别： <font>'+val.complaint_type_name+'</font></dd>'
+                                +'<dd class="w50">投诉类型： <font>'+val.complaint_problem_name+'</font></dd>'
+                                +'<dd class="w50">子类型： <font></font></dd>'
+                                +'<dd class="w50">投诉状态： <font>'+complaint_status_name+'</font></dd>'
+                                +'<dd class="w50">处理结果： <font>'+val.dispose_status_name+'</font></dd>'
+                                +'<dd class="w50">责任部门： <font>'+val.department_name+'</font></dd>'
+                                +'<dd class="w50">连带责任： <font>'+val.person_liable_related+'</font></dd>'
+                                +'</dl>'
+                                +'<div class="info">'
+                                +'<p class="fc_o" style="line-height: 1.4">投诉内容</p>'
+                                +'<p class="p_text">'+val.complaint_text+'</p>'
+                                +'<p class="fc_o" style="line-height: 1.4">处理备注</p>'
+                                +'<p class="p_text">'+val.dispose_bak+'</p>'
+                                +'</div>'
+                                +'</div>'
+                                +'</li>'
+                    })
+                    $(".complain ul").empty();
+                    $('.complain ul').append(html)
+                    $('.noData').empty();
+                }else{
+                    $('.complain').hide();
+                    $(".complain ul").empty();
+                    $('.noData').html('<i></i>本月无投诉记录，棒棒哒，继续保持哦！')
+                }
+            },
+            error: function(data) {
+                alert("Connection error");
+            }
+        })
+    }
+
+    require(['iscroll', 'listloading'], function(){
+        var Listloading = require('listloading');
+        // demo
+        var listloading = new Listloading('#listloading', {
+            disableTime: true, // 是否需要显示时间
+            pullDownAction: function(cb, flg) { // 下拉刷新
+                dataAry = [];
+                revenAry = [];
+                if(flg){
+
+                }else{
+                    map={time:timer}
+                    getData()
+                }
+
+                cb();
+            },
+            Realtimetxt: '释放刷新数据！',
+            loaderendtxt: '没有数据了',
+            // iscroll的API
+            iscrollOptions: {
+                scrollbars: false // 显示iscroll滚动条
+            }
+        });
+    });
+    require.config({
+        paths: {
+            "iscroll": "../../js/iscroll/jslib/iscroll",
+            "listloading": "../../js/iscroll/jslib/listloading"
+        }
+    });
+</script>
+</body>
+</html>

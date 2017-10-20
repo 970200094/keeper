@@ -1,0 +1,30 @@
+
+/*/////////在线考核//////////*/
+
+.xm-list {
+    width: 95%;
+    height: .6rem;
+    margin-left:5%;
+    line-height: .6rem;
+    border-bottom: .5px solid #d8d8d8;
+    overflow: hidden;
+}
+
+.xm-list >img {
+    width: .47rem;
+    height: .47rem;
+    display: inline-block;
+}
+
+.xm-list>span {
+    margin-left: .2rem;
+    font-size: .15rem;
+    color: #555555;
+    letter-spacing: -0.38px;
+
+}
+
+.xm-list>.arrow {
+    margin-right: 5%;
+    margin-top: .255rem;
+}

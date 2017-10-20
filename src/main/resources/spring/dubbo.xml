@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+            http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--application-->
+    <dubbo:application name="keeper-api" logger="slf4j"/>
+    <!--registry-->
+    <dubbo:registry address="${registry.address}" check="false"/>
+    <!--reference-->
+    <dubbo:reference id="userPushService" interface="com.xiaomaguanjia.message.contract.service.UserPushService" cluster="failfast" timeout="6000"/>
+    <dubbo:reference id="keeperPushService" interface="com.xiaomaguanjia.message.contract.service.KeeperPushService" cluster="failfast" timeout="6000"/>
+    <!--reference-->
+    <dubbo:reference id="orderSourceService" interface="com.xiaoma.basicservice.contract.OrderSourceService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="configService" interface="com.xiaoma.basicservice.contract.ConfigService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="serviceDescriptionService" interface="com.xiaoma.basicservice.contract.ServiceDescriptionService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="userAddrService" interface="com.xiaoma.basicservice.contract.UserAddrService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="couponsService" interface="com.xiaoma.basicservice.contract.CouponsService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="couponsTypeService" interface="com.xiaoma.basicservice.contract.CouponsTypeService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="messageService" interface="com.xiaoma.basicservice.contract.MessageService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="userService" interface="com.xiaoma.basicservice.contract.UserService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="unitService" interface="com.xiaoma.basicservice.contract.UnitService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="serviceHoursService" interface="com.xiaoma.basicservice.contract.ServiceHoursService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="requestLogService" interface="com.xiaoma.basicservice.contract.RequestLogService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="orderCommentService" interface="com.xiaoma.basicservice.contract.OrderCommentService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="orderService" interface="com.xiaoma.basicservice.contract.OrderService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="orderTypeService" interface="com.xiaoma.basicservice.contract.OrderTypeService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="loginService" interface="com.xiaoma.basicservice.contract.LoginService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="houseKeeperService" interface="com.xiaoma.basicservice.contract.HouseKeeperService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="areaService" interface="com.xiaoma.basicservice.contract.AreaService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="rechargeUserService" interface="com.xiaoma.basicservice.contract.RechargeUserService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="alipayService" interface="com.xiaoma.basicservice.contract.AlipayService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="weixinPayService" interface="com.xiaoma.basicservice.contract.weixin.WeixinPayService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="categoryService" interface="com.xiaoma.basicservice.contract.CategoryService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="behaviorPointService" interface="com.xiaoma.basicservice.contract.behavior.BehaviorPointService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="behaviorPointParamService" interface="com.xiaoma.basicservice.contract.behavior.BehaviorPointParamService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="pushMessageTypeService" interface="com.xiaoma.basicservice.contract.push.PushMessageTypeService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="pushMessageService" interface="com.xiaoma.basicservice.contract.push.PushMessageService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="behaviorPointParamValueService" interface="com.xiaoma.basicservice.contract.behavior.BehaviorPointParamValueService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="behaviorCountService" interface="com.xiaoma.basicservice.contract.behavior.BehaviorCountService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="orderKeeperService" interface="com.xiaoma.basicservice.contract.OrderKeeperService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="wechatService" interface="com.xiaoma.basicservice.contract.WechatService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="behaviorPointGroupService" interface="com.xiaoma.basicservice.contract.behavior.BehaviorPointGroupService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="deviceService" interface="com.xiaoma.basicservice.contract.DeviceService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="feedbackService" interface="com.xiaoma.basicservice.contract.FeedbackService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="appVersionService" interface="com.xiaoma.basicservice.contract.AppVersionService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="appChannelService" interface="com.xiaoma.basicservice.contract.AppChannelService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="behaviorLogService" interface="com.xiaoma.basicservice.contract.behavior.BehaviorLogService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="bannerService" interface="com.xiaoma.basicservice.contract.BannerService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="reportService" interface="com.xiaoma.basicservice.contract.ReportService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="memberApplyService" interface="com.xiaoma.basicservice.contract.MemberApplyService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="weixinService" interface="com.xiaoma.basicservice.contract.weixin.WeixinService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="weixinChannelUserService" interface="com.xiaoma.basicservice.contract.weixin.WeixinChannelUserService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="weixinUserService" interface="com.xiaoma.basicservice.contract.weixin.WeixinUserService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="wxUserLogService" interface="com.xiaoma.basicservice.contract.weixin.WxUserLogService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="weixinGameTypeService" interface="com.xiaoma.basicservice.contract.weixin.WeixinGameTypeService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="weixinGameUserService" interface="com.xiaoma.basicservice.contract.weixin.WeixinGameUserService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="idMappingService" interface="com.xiaoma.basicservice.contract.IdMappingService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="userDetailsService" interface="org.springframework.security.core.userdetails.UserDetailsService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="authorityGroupService" interface="com.xiaoma.basicservice.contract.security.AuthorityGroupService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="authorityService" interface="com.xiaoma.basicservice.contract.security.AuthorityService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="employeeServiceBean" interface="com.xiaoma.basicservice.contract.security.EmployeeService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="callCenterService" interface="com.xiaoma.basicservice.contract.call.CallCenterService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="callRecordService" interface="com.xiaoma.basicservice.contract.call.CallRecordService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="communityService" interface="com.xiaoma.basicservice.contract.lbs.CommunityService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="navigationService" interface="com.xiaoma.basicservice.contract.lbs.NavigationService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="cmsReportService" interface="com.xiaoma.basicservice.contract.CMSReportService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="availableServiceTimeService" interface="com.xiaoma.basicservice.contract.AvailableServiceTimeService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="keeperLogService" interface="com.xiaoma.basicservice.contract.keeper.KeeperLogService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="keeperSignService" interface="com.xiaoma.basicservice.contract.keeper.KeeperSignService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="aesService" interface="com.xiaoma.basicservice.contract.aes.AesService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="keeperVacationService" interface="com.xiaoma.basicservice.contract.KeeperVacationService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="cmsLogService" interface="com.xiaoma.basicservice.contract.cms.CmsLogService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="operationPersonService" interface="com.xiaoma.basicservice.contract.OperationPersonService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="marketChannelService" interface="com.xiaoma.basicservice.contract.MarketChannelService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="marketUserService" interface="com.xiaoma.basicservice.contract.market.MarketUserService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="vipCardService" interface="com.xiaoma.basicservice.contract.VipCardService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="marketCountService" interface="com.xiaoma.basicservice.contract.MarketChannelCountService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="timeRuleService" interface="com.xiaoma.basicservice.contract.TimeRuleService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="cityService" interface="com.xiaoma.basicservice.contract.CityService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="locationService" interface="com.xiaomaguanjia.basicservice.contract.location.LocationService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="orderStateLogService" interface="com.xiaomaguanjia.basicservice.contract.order.OrderStateLogService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="planService" interface="com.xiaoma.basicservice.contract.plan.PlanService" cluster="failfast" timeout="30000"/>
+    <dubbo:reference id="keeperRankService" interface="com.xiaoma.basicservice.contract.keeperrank.KeeperRankService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="pushKeeperLogService" interface="com.xiaoma.basicservice.contract.PushKeeperLogService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="activeInfoService" interface="com.xiaoma.basicservice.contract.coupons.ActiveInfoService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="lightKeeperApplyService" interface="com.xiaoma.basicservice.contract.LightKeeperApplyService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="serviceFrequencyService" interface="com.xiaoma.basicservice.contract.lightkeeper.ServiceFrequencyService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="orderModifyService" interface="com.xiaoma.basicservice.contract.OrderModifyService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="revenueService" interface="com.xiaoma.basicservice.contract.revenue.RevenueService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="keeperCardBalanceService" interface="com.xiaoma.basicservice.contract.keeperrank.KeeperCardBalanceService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="keeperDeviceService" interface="com.xiaoma.basicservice.contract.keeper.KeeperDeviceService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="pushKeeperContentSerivce" interface="com.xiaoma.basicservice.contract.push.PushKeeperContentSerivce" />
+    <dubbo:reference id="orderImageService" interface="com.xiaoma.basicservice.contract.image.OrderImageService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="pushConfigService" interface="com.xiaoma.basicservice.contract.task.PushConfigService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="modifyApplyOrderService" interface="com.xiaoma.basicservice.contract.ModifyApplyOrderService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="wageManagementService" interface="com.xiaoma.basicservice.contract.wage.WageManagementService" cluster="failfast" timeout="7000"/>
+    <dubbo:reference id="complaintService" interface="com.xiaoma.basicservice.contract.complaint.ComplaintService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="keeperCourseService" interface="com.xiaoma.basicservice.contract.college.KeeperCourseService" cluster="failfast" timeout="3000"/>
+       
+    <dubbo:reference id="keeperChannelService" interface="com.xiaoma.basicservice.contract.college.KeeperChannelService" cluster="failfast" timeout="3000"/>
+    <dubbo:reference id="orderMessageLogService" interface="com.xiaoma.basicservice.contract.OrderMessageLogService" cluster="failfast" timeout="3000"/>
+    
+</beans>

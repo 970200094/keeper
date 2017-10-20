@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>办卡营收</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .loading{position:fixed;width:50px;height:50px;background:rgba(0,0,0,.6);border-radius:5px;padding:10px;left: 50%;top:50%;margin: -25px 0 0 -25px}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!--<header><a onclick="javascript:window.history.back()" class="back"></a>办卡营收</header>-->
+    <div class="introList orderList">
+        <div class="num clearfix">
+            <div class="w33 fl"><span id="c1">--</span>张数</div>
+            <div class="w33 fl"><span id="c2">--</span>总额</div>
+            <div class="w33 fl"><span id="c3">--</span>提成</div>
+        </div>
+        <div class="order_list hide">
+            <ul>
+                <!--<li>-->
+                <!--<div class="payBox">-->
+                <!--<div class="title clearfix">VIP银卡</div>-->
+                <!--<div class="tbox">-->
+                <!--<div class="order_intro">-->
+                <!--<p class="p2"><i>原价：1180元</i><i>提成比例：52%</i><i>提成：67</i></p>-->
+                <!--<p class="p3 fc_o">备注：多人订单，营收均分。</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<div class="payBox">-->
+                <!--<div class="title clearfix">VIP钻石卡</div>-->
+                <!--<div class="tbox">-->
+                <!--<div class="order_intro">-->
+                <!--<p class="p2"><i>原价：1180元</i><i>提成比例：45%</i><i>提成：52</i></p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/common.js"></script>
+<script>
+    var map
+    var month = localStorage.getItem("month")
+    var keepId = localStorage.getItem("keepId")
+    //alert(month)
+    map={
+        revenue_month:month,
+        keeperId:keepId
+    }
+    $(function(){
+        $('body').append('<div class="loading"><div class="loadEffect"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>')
+        $.ajax({
+            url:'../../common/tools',
+            dataType: 'json',
+            processData: true,
+            data:{"host":"revenue/recharge/history",map:map},
+            type: 'get',
+            success: function (data) {
+                $('.loading').remove()
+                if(data.code == 100){
+                    var obj = data.value;
+                    console.log(obj)
+                    if(obj){
+                        $('.order_list').show();
+                        var cardCount = obj.cardCount;
+                        var commissionCount = obj.commissionCount;
+                        var countPrice = obj.countPrice;
+                        $('#c1').text(cardCount)
+                        $('#c2').text(countPrice)
+                        $('#c3').text(commissionCount)
+                        //列表数据
+                        var html = '';
+                        $.each(obj.keeperCardBeans, function(key,val){
+                            //console.log(val)
+                            html += '<li><div class="payBox">';
+                            html += '<div class="title clearfix">'+val.cardName+'</div>';
+                            html += '<div class="tbox">';
+                            html += '<div class="order_intro">';
+                            html += '<p class="p2"><i>原价：'+val.cardBalance+'元</i><i>提成比例：'+val.cardRate+'%</i><i>提成：'+val.balance+'</i></p>';
+                            if(val.peopleNumber > 0){
+                                html +='<p class="p3 fc_o">备注：多人订单,营收均分。</p>';
+                            }
+                            html += '</div></div></div></li>';
+                        })
+                        $('.order_list ul').append(html)
+                    }else{
+                        $('.introList').append('<div class="noData"><i></i>暂无相关信息</div>')
+                    }
+                }else{
+                    $('.introList').append('<div class="noData"><i></i>暂无相关信息</div>')
+                }
+
+            },
+            error: function(data) {
+                alert("Connection error");
+            }
+        })
+    })
+</script>
+</body>
+</html>

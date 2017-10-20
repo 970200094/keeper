@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>工资管理</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/base.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/listloading.css">
+    <style>
+        .pay{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!--<header><a onclick="javascript:window.history.back()" class="back"></a>工资管理</header>-->
+    <div class="introList pay" id="listloading">
+        <div>
+            <div class="payBox">
+                <div class="title" id="title"></div>
+                <div class="center clearfix">
+                    <div class="w33 fl"><span id="num1">--</span>订单总量</div>
+                    <div class="w33 fl"><span id="num2">--</span>总营收</div>
+                    <div class="w33 fl"><span id="num3">--</span>同城营收排名</div>
+                </div>
+            </div>
+            <hr>
+            <div class="payBox">
+                <div class="title">薪资构成</div>
+                <div class="tbox clearfix">
+                    <div class="w50 fl" id="can">
+
+                    </div>
+                    <dl class="w50 fr">
+                        <dd>
+                            <a onclick="orderList(1)"><span><i></i>订单营收<font id="m1">--</font>元<b></b></span><strong>上月：<font id="m1Old">--</font>元</strong></a>
+                        </dd>
+                        <dd>
+                            <a onclick="cardList(1)"><span><i></i>办卡营收<font id="m2">--</font>元<b></b></span>上月：<font id="m2Old">--</font>元</a>
+                        </dd>
+                        <dd>
+                            <span><i></i>保护期底薪<font id="m3">--</font>元</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <hr>
+            <div class="payBox">
+                <div class="title">我的薪资走势</div>
+                <div class="tbox clearfix">
+                    <div id='canvasDivs' style="width: 100%;height: 200px;margin-left: 0.14rem"></div>
+                </div>
+            </div>
+            <hr>
+            <div class="payBox">
+                <div class="title">薪资对比</div>
+                <div class="tbox tbox2 clearfix">
+                    <div class="w50 fl">
+                        <div id='canvasDiv' style="width: 100%;height: 150px;margin-left: 0.14rem"></div>
+                    </div>
+                    <dl class="w50 fr">
+                        <dd>
+                            <a onclick="orderList(2)"><span>订单营收  <font id="n1">--</font>元<b></b></span></a>
+                        </dd>
+                        <dd>
+                            <a onclick="cardList(2)"><span>办卡营收  <font id="n2">--</font>元<b></b></span></a>
+                        </dd>
+                        <dd>
+                            <span>保护期底薪  <font id="n3">--</font>元</span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="tbox">
+                    <p class="desc" id="desc"></p>
+                </div>
+            </div>
+            <hr>
+            <div class="payBox">
+                <div class="title">技能对比</div>
+                <div class="tbox tbox3">
+                    <p class="desc">多多学会新技能，注重服务品质，赢得更多好评，晋升星级，提升单量，薪资就会涨多多！成功没有捷径，唯有奋力拼搏！</p>
+                </div>
+                <div class="tbox tbox4 clearfix">
+                    <dl class="w50 fl">
+                        <dt>我的</dt>
+                        <dd></dd>
+                    </dl>
+                    <dl class="w50 fl">
+                        <dt>同城最高收入者</dt>
+                        <dd></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/jquery-1.10.2.min.js"></script>
+
+<script src="../../js/lib/echarts.common.min.js"></script>
+<script src="../../js/lib/d3.v3.min.js" charset="utf-8"></script>
+<script src="../../js/iscroll/jslib/require.js"></script>
+<script src="../../js/iscroll/jslib/iconfont.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/pay.js"></script>
+<script>
+
+</script>
+</body>
+</html>

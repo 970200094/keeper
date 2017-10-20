@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/XM-css/base-xm.css">
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/base.js"></script>
+    <script src="../../js/common.js"></script>
+    <title>管家端</title>
+    <style>
+        .top_div {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .bottom_div{
+            width: 100%;
+            height: auto;
+        }
+
+        .top_child_one_div{
+            width:14%;
+            height: auto;
+        }
+
+        .top_child_two_div{
+            width:86%;
+            height: auto;
+            overflow-x: scroll;
+            display: inline;
+            float: left;
+        }
+
+        .image_one{
+            float: left;
+            width: 100%;
+            height: auto;
+            border-radius: 0px;
+            margin-top: 0px;
+        }
+
+        .image_two{
+            width: 207%;
+            height: auto;
+            border-radius: 0px;
+            margin-top: 0px;
+        }
+
+        .image_three{
+            width: 100%;
+            height: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+<div>
+    <div class="top_div">
+        <div class="top_child_one_div">
+            <img class="image_one" src="../../images/left_one.jpg"/>
+
+        </div>
+        <div class="top_child_two_div">
+            <img class="image_two" src="../../images/right_one.jpg"/>
+        </div>
+    </div>
+
+    <div class="bottom_div">
+        <img class="image_three" src="../../images/bot.png"/>
+    </div>
+
+</div>
+
+<script>
+    function getUrl(){
+        xmgjExtend.navigationTitle('晋升说明');
+    }
+    getUrl();
+</script>
+</body>
+</html>

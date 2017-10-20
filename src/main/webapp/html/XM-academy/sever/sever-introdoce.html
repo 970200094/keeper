@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../../css/base.css">
+    <link rel="stylesheet" href="../../../css/XM-css/base-xm.css">
+    <link rel="stylesheet" href="../../../css/XM-css/sever.css">
+	<script src="../../../js/jquery-1.10.2.min.js"></script>
+	<script src="../../../js/base.js"></script>
+	<script src="../../../js/common.js"></script>
+
+    <title>管家端</title>
+</head>
+<body>
+	<!--<div>-->
+	    <!--<header>-->
+	        <!--<a class="icon back" href="../college.html"></a>-->
+	        <!--<div class="logo">服务产品介绍</div>-->
+	    <!--</header>-->
+	<!--</div>-->
+	<!--<div class="help"></div>-->
+	<div class="xm-mue" id="xm-mue">
+		<ul id="ul1">
+			<!--<li class="active"><a href="#">新居开荒</a></li>-->
+			<!--<li><a href="#">除尘除螨</a></a></li>-->
+			<!--<li><a href="#">除甲醛</a></li>-->
+			<!--<li><a href="#">灯具清洗</a></li>-->
+			<!--<li><a href="#">擦玻璃</a></li>-->
+			<!--<li><a href="#">衣柜收纳</a></li>-->
+			<!--<li><a href="#">地板打蜡</a></li>-->
+			<!--<li><a href="#">大理石结晶</a></li>-->
+			<!--<li><a href="#">地毯清洗</a></li>-->
+			<!--<li><a href="#">月子房清洁</a></li>-->
+			<!--<li><a href="#">轻管家单次</a></li>-->
+		</ul>
+		<span class="down"></span>
+	</div>
+	<div class="xm-tab-all dis-none" id="all-list">
+		<div class="xm-all-top">
+			<div>全部产品</div>
+			<i class="close"></i>
+		</div>
+		<div class="floatR subNav_choose chooseCont_close"><span></span></div>
+		<ul >
+			<!--<li class="xm-li-list active">新居开荒</li>-->
+			<!--<li><a href="#">除尘除螨</a></li>-->
+			<!--<li><a href="#">除甲醛</a></li>-->
+			<!--<li><a href="#">灯具清洗</a></li>-->
+			<!--<li><a href="#">擦玻璃</a></li>-->
+			<!--<li><a href="#">衣柜收纳</a></li>-->
+			<!--<li><a href="#">地板打蜡</a></li>-->
+			<!--<li><a href="#">大理石结晶</a></li>-->
+			<!--<li><a href="#">地毯清洗</a></li>-->
+			<!--<li><a href="#">月子房清洁</a></li>-->
+			<!--<li><a href="#">轻管家单次</a></li>-->
+		</ul>
+
+	</div>
+	<div id="innerhtml"></div>
+
+	<!--<div class="nodata">-->
+		<!--<i class="nodata-icon"></i>-->
+		<!--<div>暂无数据</div>-->
+	<!--</div>-->
+	<script src="../../../js/sever-introdoce.js"></script>
+	<script>
+//        var $close = $('.close');
+//        var $down = $('.down');
+//        var $xmMue = $('#xm-mue');
+//        var $allLIist = $('#all-list');
+//
+//        $('#xm-mue ul li').on("click",function(){
+//            $(this).addClass("active").siblings().removeClass("active");
+//        });
+//        $down.on('click',function(){
+//            $allLIist.css('display','block')
+//            $xmMue.css('display','none')
+//        });
+//
+//        $close.on('click',function(){
+//            $allLIist.css('display','none')
+//            $xmMue.css('display','block')
+//        });
+//
+//        var screenWidth = $(window).width(); //屏幕宽度
+//        var liWidth=70;
+//        console.log(screenWidth);
+//
+//        var numMin = parseInt ( screenWidth/liWidth/2 );//3
+//        console.log(numMin)
+//
+//        var menuWidth = $('#xm-mue ul').outerWidth(); //tab ul 宽度 800
+//        var liNum = $('#xm-mue ul li').length ; //tab li个数 11
+//        console.log(menuWidth)
+//        console.log(liNum)
+//        console.log( $('#xm-mue ul li'))
+//
+//        var allLi = 0;
+//        for(var i = 0; i < liNum; i++){
+//            allLi += $('#xm-mue ul li').eq(i).outerWidth();
+//        }
+//        console.log(allLi)//850
+//        for (var i = 0; i < numMin; i++) {
+//            $('#xm-mue ul li').eq(i).click(function(){
+//                $('#xm-mue').scrollLeft( 0 );
+//            });
+//        }
+//        console.log(liNum-numMin)
+//        for (var i = numMin; i < (liNum-numMin); i++) {
+//            $('#xm-mue ul li').eq(i).click(function(){
+//                var index = $(this).index();
+//                var len=0;
+//                for (var i = numMin; i < index; i++) {
+//                    var len1 =  $('#xm-mue ul li').eq(i).outerWidth();
+//                    len = len + len1;
+////                    console.log(index) //76
+////                    console.log(len1) //76
+////                    console.log((liWidth+10)*(index-numMin)+len- liWidth*(index-numMin))
+////                    console.log(liWidth)//
+////                    console.log(index)//
+////                    console.log(index-numMin,'333333333333')
+////                    console.log(len,'22222222222')
+////                    console.log(liWidth*(index-numMin))
+////                    console.log((liWidth+4)*(index-numMin)+len- liWidth*(index-numMin),'5555555555555')
+////                    console.log(liNum,'777777777')
+////                    console.log(numMin,'44444444')
+//                }
+//                $('#xm-mue').scrollLeft( (liWidth+10)*(index-numMin)+len- liWidth*(index-numMin) );
+//
+//            });
+//
+//        }
+//        for (var i = (liNum-numMin) ; i < liNum ; i++) { //8
+//            $('#xm-mue ul li').eq(i).click(function(){
+//                $('#xm-mue').scrollLeft(menuWidth-allLi+ liWidth+screenWidth +20);
+////                console.log($('#xm-mue').scrollLeft())
+////                console.log(i,'1111')
+////                console.log((liWidth+10)*(i-numMin)+i- liWidth*(i-numMin) )
+////                console.log(allLi - menuWidth + liWidth+screenWidth)
+////                console.log(allLi)//850
+////                console.log( menuWidth )//900
+////                console.log( liWidth )//70
+//            });
+//
+//        }
+//
+//        $("#all-list li").on("click",function(){
+//            var $this = $(this);
+//            $this.addClass('active').siblings('li').removeClass('active')
+//            var currIndex=$("#all-list li").index(this);
+////            console.log(currIndex)
+//            $allLIist.css('display','none')
+//            $xmMue.css('display','block')
+//            $("#xm-mue ul li").eq(currIndex).addClass("active").siblings().removeClass("active");
+//            $('#xm-mue ul li').eq(currIndex).trigger("click");
+//        })
+	</script>
+
+</body>
+</html>

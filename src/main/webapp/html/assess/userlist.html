@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户评价记录</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/base.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/listloading.css">
+    <style>
+        .tab_box{
+            display: none;
+            position: absolute;
+            top:40px;
+            left:0;
+            width: 100%;
+            height:calc(100% - 40px);
+            overflow:hidden;
+        }
+        .animated{-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
+        .zoomIn{0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}50%{opacity:1}}
+        @keyframes zoomIn{
+            0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);-ms-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3)}
+            50%{opacity:1}}.zoomIn{-webkit-animation-name:zoomIn;animation-name:zoomIn}
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <!--<header><a onclick="javascript:window.history.back()" class="back"></a>评价记录</header>-->
+    <div class="introList assess">
+        <ul class="tab_head clearfix" id="tab_head">
+            <li class="active">好评(<i id="good"></i>)</li>
+            <li>差评(<i id="bad"></i>)</li>
+        </ul>
+        <div class="tab_content" id="tab_content">
+            <div class="tab_box action" id="listloading">
+                <div>
+                <ul id="order-list">
+
+                </ul>
+                </div>
+                <!--<div class="noData"><i></i>暂无评价</div>-->
+            </div>
+            <div class="tab_box" id="listloading2">
+                <div>
+                <ul id="order-list2">
+                    <!--<li>-->
+                        <!--<div class="box box1">-->
+                            <!--<p class="p_title"><b class="differ"></b>轻管家周期订单<span class="fc_g">（非常不满意）</span><i class="fc_g">最近</i></p>-->
+                            <!--<p class="p_desc">管家你好，我家今天有点脏，请尽量打扫干净，洗衣机里的衣服需要清洗，家中有小狗，请关好门和窗户以防捣乱桌子上的东西请帮忙扔掉。谢谢。</p>-->
+                            <!--<p class="p_tag"><a href="">打扫很干净</a><a href="">服务很周到</a></p>-->
+                            <!--<p class="p_thumb"></p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                </div>
+                <!--<div class="noData"><i></i>暂无评价</div>-->
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:999;width:100%;height:100%;display:none;">
+    <div id="innerdiv" class="animated zoomIn" style="position:absolute;"><img id="bigimg" src="" /></div>
+</div>
+<script src="../../js/jquery-1.10.2.min.js"></script>
+<script src="../../js/iscroll/jslib/require.js"></script>
+<script src="../../js/iscroll/jslib/iconfont.js"></script>
+<script src="../../js/common.js"></script>
+<script>
+
+    var map,len,userid
+    userid = getParam("userId")
+
+    map={userId:userid,page:1,status:0}
+    //alert(userid)
+
+    function getData(){
+        $.ajax({
+            url: '../../common/tools',
+            dataType: 'json',
+            processData: true,
+            data: {host: "comment/user/history", map:map},
+            type: 'get',
+            success: function (data) {
+                //alert('s')
+                $('#good').text(data.value.good)
+                $('#bad').text(data.value.bad)
+                var obj = data.value.vo;
+                if(obj){
+                    len = obj.length
+                    var html = '';
+                    $.each(obj, function(key,val){
+                        var img = fromJson(val.imgs)
+                        //console.log(img)
+                        console.log(val)
+                        html+='<li><div class="box box1">';
+                        var time = val.addTime;
+                        var date = new Date(time);
+                        var timer = date.pattern("MM/dd HH:mm")
+
+                        if(map.status == 0 ) {
+                            html += '<p class="p_title"><b class="good"></b>' + val.name + '<span class="fc_o">（' + val.desc + '）</span><i class="fc_g">' + timer + '</i></p>';
+                            if(val.content == ""){
+                                html+='<p class="p_desc">默认好评！</p>';
+                            }else{
+                                html+='<p class="p_desc">'+val.content+'</p>';
+                            }
+                        }else{
+                            html+='<p class="p_title"><b class="differ"></b>'+val.name+'<span class="fc_o">（'+val.desc+'）</span><i class="fc_g">'+ timer +'</i></p>';
+
+                            html+='<p class="p_desc">'+val.content+'</p>';
+
+                        }
+
+                        html+='<p class="p_tag">';
+                        $.each(val.code, function(key2,val2){
+                            //console.log(val2)
+                            html+='<a>'+val2+'</a>';
+                        })
+                        html+='</p>';
+                        if(img){
+                            html+='<div class="p_thumb my-gallery">';
+                            $.each(img, function(key3,val3){
+                                console.log(val3)
+                                html+='<a class="imgBox" style="display:inline-block;width:30.5%;background:none;margin: 0 0 2% 2%"><img src="'+val3.sm_img+'" bigImg="'+val3.big_img+'" onClick="img(this);" width="100%"/></a>';
+                            })
+                            html+='</div>';
+                        }
+                        html+='</div></li>';
+                    })
+
+                    var imgW = $('.imgBox').width()
+                    $(".p_thumb img").load(function(){
+                        //alert(imgW)
+                        $(".p_thumb img").css({"width":"100%"})
+                        $('.imgBox').css({"width":imgW,"height":imgW,"overflow":"hidden"})
+                    });
+
+                    if(map.status == 0 ) {
+                        $("#listloading ul").empty();
+                        $('#listloading ul').append(html)
+                        $(".noData").empty();
+                    }else{
+                        $("#listloading2 ul").empty();
+                        $('#listloading2 ul').append(html)
+                        $(".noData").empty();
+                    }
+
+                }else{
+                    if(map.status == 0 ){
+                        $("#listloading ul").empty();
+                        $('.tab_box').eq(0).append('<div class="noData"><i></i>暂无评价</div>')
+                    }else{
+                        $("#listloading2 ul").empty();
+                        $('.tab_box').eq(1).append('<div class="noData"><i></i>暂无评价</div>')
+                    }
+                }
+
+            },
+            error: function() {
+                alert("Connection error");
+            }
+        })
+    }
+
+
+    require(['iscroll', 'listloading'], function(){
+        var Listloading = require('listloading');
+        // tab1
+        var listloading = new Listloading('#listloading', {
+            disableTime: true,  // 是否需要显示时间
+            pullUpAction : function(cb){   // 上拉加载更多
+                var flg = false;
+
+                if(len<20){
+                    flg = true;
+                }else{
+                    map.page++
+                    getData()
+                }
+                cb(flg);
+            },
+            pullDownAction : function(cb){  // 下拉刷新
+                map.page = 1;
+                map.status = 0;
+                getData()
+                cb();
+            },
+            Realtimetxt: '释放刷新数据！',
+            loaderendtxt: '没有数据了~',
+            // iscroll的API
+            iscrollOptions: {
+                scrollbars: false   // 显示iscroll滚动条
+            }
+        });
+        // tab2
+        var Tab2Listloading = function () {
+            new Listloading('#listloading2', {
+                disableTime: true,
+                pullUpAction : function(cb){   // 上拉加载更多
+                    var flg = false;
+                    if(len<20){
+                        flg = true;
+                    }else{
+                        map.page++
+                        getData()
+                    }
+                    cb(flg);
+                },
+                pullDownAction : function(cb){
+                    map.page = 1;
+                    map.status = 1;
+                    getData()
+                    cb();
+                },
+                Realtimetxt: '释放刷新数据！',
+                loaderendtxt: '没有数据了~',
+                iscrollOptions: {
+                    scrollbars: false   // 显示iscroll滚动条
+                }
+            });
+        }
+        // 只有第一次load才执行
+        var tabFirstLoad2 = true;
+        // 切换
+        $('#tab_head > li').click(function() {
+            var index = $(this).index();
+            $('#tab_head > li').eq(index).addClass('active').siblings().removeClass('active');
+            $('.tab_box').hide();
+            $('.tab_box').eq(index).show();
+            if (index === 0 ) {
+                map.status = 0
+            }
+            // 第二个tab
+            if (index === 1 && tabFirstLoad2) {
+                map.status = 1
+                tabFirstLoad2 = false;
+                Tab2Listloading();
+            }
+        });
+    });
+
+    require.config({
+        paths: {
+            "iscroll": "../../js/iscroll/jslib/iscroll",
+            "listloading": "../../js/iscroll/jslib/listloading"
+        }
+    });
+
+    function img(obj){
+        imgShow(outerdiv, innerdiv, bigimg, $(obj))
+    }
+    function imgShow(outerdiv, innerdiv, bigimg, _this){
+        var src = _this.attr("bigImg");
+        $(bigimg).attr("src", src);
+
+        $("<img/>").attr("src", src).load(function(){
+            var winW = $(window).width();
+            var winH = $(window).height();
+            var imgW = this.width;
+            var imgH = this.height;
+            var scale= 1;
+            if(imgH>winH*scale) {
+                imgH = winH*scale;
+                imgW = imgH/imgH*imgW;
+                if(imgW>winW*scale) {
+                    imgW = winW*scale;
+                }
+            }
+            if( imgW > winW ){
+                $(bigimg).css("width","100%").css("height","auto");
+                imgH = winW/scale;
+                var h=(winH-imgH)/2;
+                //console.log(h)
+                $(innerdiv).css({"left":0,"top":h});
+            }else{
+                $(bigimg).css("width",imgW+'px').css("height",imgH+'px');
+                var w=(winW-imgW)/2;
+                var h=(winH-imgH)/2;
+                $(innerdiv).css({"left":w,"top":h});
+            }
+
+            $(outerdiv).fadeIn("fast");
+            $('body').css({"overflow":"hidden"})
+        });
+
+        $(outerdiv).click(function(){
+            $(this).fadeOut("fast");
+            $('body').css({"overflow":"scroll"})
+        });
+    }
+
+</script>
+
+</body>
+</html>

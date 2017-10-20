@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../js/iscroll/css/base.css">
+    <link rel="stylesheet" href="../../js/iscroll/css/listloading.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/XM-css/base-xm.css">
+    <link rel="stylesheet" href="../../css/XM-css/college.css">
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/Q&A.js"></script>
+
+
+    <title>管家端</title>
+    <style>
+        section{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        .xm-div-ul{overflow: hidden;margin-left: 0}
+        .xm-div-ul li{
+            width: 25%;
+            padding: .15rem .2rem 0.1rem;
+        }
+        #scroller {
+            position: absolute;
+            top:0;
+        }
+        /*.xm-div-ul{display: inline-block;float: none;margin-left: 0}*/
+    </style>
+
+</head>
+<body onload="load()">
+<!--<div>-->
+<!--<header>-->
+<!--<div class="logo">小马学院</div>-->
+<!--</header>-->
+<!--</div>-->
+<!--<div class="help"></div>-->
+
+<section  id="listloading">
+    <div>
+        <div class="xm-div">
+            <div class="xm-div-top">
+                <i class="xm-i"></i>
+                <span>马上学</span>
+            </div>
+            <div class="xm-ul-wp">
+                <div style="width: 100%;height:2.1rem;overflow: visible; white-space: nowrap; position: relative;" id="divs" ontouchmove="event.preventDefault();return false;">
+                    <div id="scroller">
+                        <ul class="xm-div-ul ul1" id="xm-div-ul">
+
+                        </ul>
+                        <ul class="xm-div-ul ul2">
+                            <!--<li>-->
+                            <!--<dl>-->
+                            <!--<dt><img src="../../images/xm-sever/ic_anquan_h@2x.png" alt=""></dt>-->
+                            <!--<dd>服务产品</dd>-->
+                            <!--</dl>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<dl>-->
+                            <!--<dt><img src="../../images/xm-sever/ic_anquan_h@2x.png" alt=""></dt>-->
+                            <!--<dd>服务产品</dd>-->
+                            <!--</dl>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<dl>-->
+                            <!--<dt><img src="../../images/xm-sever/ic_anquan_h@2x.png" alt=""></dt>-->
+                            <!--<dd>服务产品</dd>-->
+                            <!--</dl>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<dl>-->
+                            <!--<dt><img src="../../images/xm-sever/ic_anquan_h@2x.png" alt=""></dt>-->
+                            <!--<dd>服务产品</dd>-->
+                            <!--</dl>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<dl>-->
+                            <!--<dt><img src="../../images/xm-sever/ic_anquan_h@2x.png" alt=""></dt>-->
+                            <!--<dd>服务产品</dd>-->
+                            <!--</dl>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<dl>-->
+                            <!--<dt><img src="../../images/xm-sever/ic_anquan_h@2x.png" alt=""></dt>-->
+                            <!--<dd>服务产品</dd>-->
+                            <!--</dl>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                            <!--<dl>-->
+                            <!--<dt><img src="../../images/xm-sever/ic_anquan_h@2x.png" alt=""></dt>-->
+                            <!--<dd>管家端培训</dd>-->
+                            <!--</dl>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="xm-div" onclick="assessONClick('在线考核')">
+            <img src="../../images/xm-sever/kaohe.jpg" alt="在线考核">
+        </div>
+        <div class="xm-div">
+            <div class="xm-div-top">
+                <i class="xm-i"></i>
+                <span>日常问题及解答</span>
+                <span onclick="moreData('Q&A')" class="xm-more">更多</span>
+            </div>
+            <ul id="qa-ul">
+
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<script src="../../js/iscroll/jslib/require.js"></script>
+<script src="../../js/iscroll/jslib/iconfont.js"></script>
+<script src="../../js/iscroll/jslib/iscroll.js"></script>
+
+
+<script src="../../js/base.js"></script>
+<script src="../../js/college.js"></script>
+
+<script>
+
+
+    var myScroll;
+    function load(){
+        myScroll = new IScroll('#divs', {
+            snap: true,
+            scrollX: true,
+            scrollY: false,
+            mouseWheel: true,
+            lockDirection:true
+        });
+        liresize();
+    }
+    $(window).resize(function() {
+        liresize();
+    })
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, false);
+
+    function liresize(){
+        var w = $(window).width()
+        $("#scroller ul").width(w);
+        $('#scroller').width(w*2);
+        myScroll.refresh();
+        console.log(w)
+    }
+
+</script>
+
+</body>
+</html>
